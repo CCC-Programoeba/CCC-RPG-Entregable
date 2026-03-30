@@ -1,34 +1,66 @@
-package inicio;
+package inicio;//CTRL ALT L
+//para alinear el berenjenal
 //Recorda afegir al professor com a col·laborador:
 //
 //usuari: joange
 //
 //email:jgcamarena@ieseljust.com
+
 import juego.Alien;
 import juego.Humano;
 import juego.Tanque;
 import util.Funcionetes;
 
 public class JuegoDeRol {
-
-    public static void provaFase1(){
+    //FASE 01
+    public static void provaFase1() {
         System.out.println("Fase 1");
-        Humano humano01 = new Humano();
-        Alien alien01 = new Alien();
-        Tanque tanque01 = new Tanque();
+        Humano humano01 = new Humano("Carlos", 30, 10, 100);
+        Alien alien01 = new Alien("HermenegildoBraulioJosé", 40, 5, 100);
+        Tanque tanque01 = new Tanque("Anselmo el Gordo", 20, 15, 200);
     }
-    public static void provaFase2(){System.out.println("Nada aún");}
-    public static void provaFase3(){System.out.println("Nada aún");}
-    public static void provaFase4(){System.out.println("Nada aún");}
-    public static void provaFase5(){System.out.println("Nada aún");}
-    public static void provaFase6(){System.out.println("Nada aún");}
-    public static void provaFase7(){System.out.println("Nada aún");}
+
+    //FASE 02
+    public static void provaFase2() {
+        System.out.println("Faase 2");
+        Humano humano01 = new Humano("Carlos", 30, 10, 100);
+        Alien alien01 = new Alien("HermenegildoBraulioJosé", 40, 5, 100);
+        Tanque tanque01 = new Tanque("Anselmo el Gordo", 20, 15, 200);
+
+        System.out.println(humano01);
+        System.out.println(alien01);
+        System.out.println(tanque01);
+
+        humano01.attack(alien01);
+        alien01.attack(tanque01);
+        tanque01.attack(humano01);
+    }
+
+    public static void provaFase3() {
+        System.out.println("Nada aún");
+    }
+
+    public static void provaFase4() {
+        System.out.println("Nada aún");
+    }
+
+    public static void provaFase5() {
+        System.out.println("Nada aún");
+    }
+
+    public static void provaFase6() {
+        System.out.println("Nada aún");
+    }
+
+    public static void provaFase7() {
+        System.out.println("Nada aún");
+    }
 
     public static void main(String[] args) {
         int opcion;
-            System.out.println("====================");
-            System.out.println("=   JUEGO DE ROL   =");
-            System.out.println("====================");
+        System.out.println("====================");
+        System.out.println("=   JUEGO DE ROL   =");
+        System.out.println("====================");
         do {
             opcion = Funcionetes.leerInt("\nElige fase (del 1 al 7), 0 para SALIR: ");
             switch (opcion) {
@@ -65,8 +97,7 @@ public class JuegoDeRol {
                 }
                 break;
             }
-        }while(opcion!=0);
-
+        } while (opcion != 0);
 
 
     }
