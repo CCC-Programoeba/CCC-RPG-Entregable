@@ -1,10 +1,23 @@
 package juego;
 
-public class Alien extends Player{
-    //Constructores
+public class Alien extends Player {
+//=============== Atributos ===============
+
+    //=============== Constructores ===============
     public Alien(String name, int attackPoints, int defensePoints, int life) {
         super(name, attackPoints, defensePoints, life);
-
-        //System.out.print("\nAlien Creado\n");
     }
+
+    @Override
+    public void attack(Player p) {
+        if (getLife() > 20) {
+            setAttackPoints(getAttackPoints() + 3);
+            setDefensePoints(getDefensePoints() - 3);
+        }
+        super.attack(p);
+    }
+
+
+    //System.out.print("\nAlien Creado\n");
+
 }
