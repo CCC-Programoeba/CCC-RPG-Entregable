@@ -6,10 +6,7 @@ package inicio;//CTRL ALT L
 //
 //email:jgcamarena@ieseljust.com
 
-import juego.Alien;
-import juego.Humano;
-import juego.Team;
-import juego.Warrior;
+import juego.*;
 import util.Funcionetes;
 
 public class JuegoDeRol {
@@ -60,8 +57,8 @@ public class JuegoDeRol {
     }
 
     public static void provaFase4() {
-        System.out.println("Fase 04!");
-
+        System.out.println("Fase 04, terminada.");
+/*
             // Jugadores
         Humano humano01 = new Humano("Carlos", 30, 10, 100);
         Alien alien01 = new Alien("HermenegildoBraulioJosé", 40, 5, 100);
@@ -89,7 +86,7 @@ public class JuegoDeRol {
         System.out.println(equip01);
         System.out.println("alien01 ahora es del equipos: " + alien01.getTeams().size());
         System.out.println(alien01);
-        
+
         System.out.println("EQUALS de Player");
         System.out.println("humano01.equals(humano02)?" + humano01.equals(humano02));
         System.out.println("humano01.equals(alien01) ?" + humano01.equals(alien01));
@@ -99,10 +96,29 @@ public class JuegoDeRol {
         System.out.println("equip01.equals(equip01)" + equip01.equals(equip01));
         System.out.println("equip01.equals(equip02): " + equip01.equals(equip02));
         System.out.println("equip01.equals(equip03): " + equip01.equals(equip03));
+*/
     }
 
     public static void provaFase5() {
-        System.out.println("Nada aún");
+        System.out.println("Fase 05");
+        // Jugadores
+        Humano humano01 = new Humano("Carlos", 30, 10, 100);
+        Alien alien01 = new Alien("HermenegildoBraulioJosé", 40, 5, 100);
+        Warrior warrior01 = new Warrior("Anselmo el Gordo", 20, 15, 200);
+        Humano humano02 = new Humano("Krakatonio", 30, 10, 100);
+
+        // Items
+        Item revolver = new Item("Revolver", 2, 0);
+        Item chaleco = new Item("Chaleco", 0, 1);
+
+        humano01.addItem(revolver);
+        humano02.addItem(chaleco);
+
+        System.out.println(humano01);
+        System.out.println(humano02);
+
+        humano01.attack(alien01);
+        humano02.attack(warrior01);
     }
 
     public static void provaFase6() {
