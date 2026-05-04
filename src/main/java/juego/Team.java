@@ -40,13 +40,29 @@ public class Team {
     //=============== Métodos ===============
 
     public void addPlayer(Player p) {
-        if (!players.contains(p)) {
+        try {
+            if (players.contains(p)) {
+                throw new JuegoException("Un equipo no puede tener jugadores repes");
+            }
+
             players.add(p);
+
+        } catch (JuegoException e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public void removePlayer(Player p) {
-        players.remove(p);
+        try {
+            if (players.contains(p) == false) {
+                throw new JuegoException("No puedes quitar de un equipo a un jugador que no esta en ese qeuipo");
+            }
+
+            players.remove(p);
+
+        } catch (JuegoException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

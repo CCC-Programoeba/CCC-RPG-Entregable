@@ -5,8 +5,7 @@ public class Item {
     private String name;
     private int attackBonus;
     private int defenseBonus;
-
-
+    
 //=============== Constructores ===============
 
     public Item() {
@@ -17,7 +16,6 @@ public class Item {
         this.attackBonus = attackBonus;
         this.defenseBonus = defenseBonus;
     }
-
 
 //=============== Getters y setters ===============
 

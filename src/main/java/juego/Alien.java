@@ -16,8 +16,5 @@ public class Alien extends Player {
         }
         super.attack(p);
     }
-
-
-    //System.out.print("\nAlien Creado\n");
-
+//
 }

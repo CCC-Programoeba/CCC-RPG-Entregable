@@ -1,7 +1,5 @@
 package juego;
-//CTRL ALT L
-//para alinear el berenjenal
-
+//CTRL ALT L para alinear el berenjenal
 import java.util.ArrayList;
 
 public abstract class Player {
@@ -11,7 +9,7 @@ public abstract class Player {
     private int defensePoints;
     private int life;
     private ArrayList<Team> teams;
-    private Item [] items;
+    private Item[] items;
     private int numItems;
 
     /* Fase-1
@@ -74,7 +72,7 @@ public abstract class Player {
         this.teams = teams;
     }
 
-//Añadimos los items, aqui la defensa
+    //Añadimos los items, aqui la defensa
     protected void hit(int attackPoints) {
 
         int masDef = 0;
@@ -102,39 +100,56 @@ public abstract class Player {
                 + " puntos y se defiende con " + defensaTotal
                 + ". HP: " + hpAntes + " - " + damage + " = " + this.life);
     }
-//Aquie el ataque  de los items
+
+    //Aquie el ataque  de los items
     public void attack(Player p) {
-        int masAtk = 0;
+        //======excepcion
+        try {
+            if (this.life <= 0 || p.life <= 0) {
+                throw new JuegoException("Un jugador muerto no puede atacar ni ser atacado");
+            }
+
+            if (this == p) {
+                throw new JuegoException("Un jugador no puede atacarse a si mismo");
+            }
+
+
+            int masAtk = 0;
         /*for (Item item : items) {
             masAtk=item.getAttackBonus();
         }*/         //->si lo hago así me peta con un nullPointerException al llegar a un null
-        for (int i = 0; i < numItems; i++) {
-            masAtk = masAtk + items[i].getAttackBonus();
-        }
-        System.out.println("=====ANTES DEL ATAQUE=====");
-        System.out.println("Atacante: " + getName() + " PA:" + getAttackPoints() + " / PD:" + getDefensePoints() + " / PV:" + getLife());
-        System.out.println("Defensor: " + p.getName() + " PA:" + p.getAttackPoints() + " / PD:" + p.getDefensePoints() + " / PV:" + p.getLife());
+            for (int i = 0; i < numItems; i++) {
+                masAtk = masAtk + items[i].getAttackBonus();
+            }
+            System.out.println("=====ANTES DEL ATAQUE=====");
+            System.out.println("Atacante: " + getName() + " PA:" + getAttackPoints() + " / PD:" + getDefensePoints() + " / PV:" + getLife());
+            System.out.println("Defensor: " + p.getName() + " PA:" + p.getAttackPoints() + " / PD:" + p.getDefensePoints() + " / PV:" + p.getLife());
 
-        System.out.println("=====ATAQUE=====");
+            System.out.println("=====ATAQUE=====");
 
-        int ataqueTotal = this.attackPoints + masAtk;
-        p.hit(ataqueTotal);
+            int ataqueTotal = this.attackPoints + masAtk;
+            p.hit(ataqueTotal);
 
-        if (p.life > 0) {
-            int masAtkDefensor = 0;
+            if (p.life > 0) {
+                int masAtkDefensor = 0;
 
-            for (int i = 0; i < p.numItems; i++) {
-                masAtkDefensor = masAtkDefensor + p.items[i].getAttackBonus();
+                for (int i = 0; i < p.numItems; i++) {
+                    masAtkDefensor = masAtkDefensor + p.items[i].getAttackBonus();
+                }
+
+                int ataqueTotalDefensor = p.attackPoints + masAtkDefensor;
+
+                this.hit(ataqueTotalDefensor);
             }
 
-            int ataqueTotalDefensor = p.attackPoints + masAtkDefensor;
+            System.out.println("=====DESPUÉS DEL ATAQUE=====");
+            System.out.println("Atacante: " + getName() + " PA:" + getAttackPoints() + " / PD:" + getDefensePoints() + " / PV:" + getLife());
+            System.out.println("Defensor: " + p.getName() + " PA:" + p.getAttackPoints() + " / PD:" + p.getDefensePoints() + " / PV:" + p.getLife());
 
-            this.hit(ataqueTotalDefensor);
+
+        } catch (JuegoException e) {
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("=====DESPUÉS DEL ATAQUE=====");
-        System.out.println("Atacante: " + getName() + " PA:" + getAttackPoints() + " / PD:" + getDefensePoints() + " / PV:" + getLife());
-        System.out.println("Defensor: " + p.getName() + " PA:" + p.getAttackPoints() + " / PD:" + p.getDefensePoints() + " / PV:" + p.getLife());
     }
 
     public void addTeam(Team t) {
@@ -170,6 +185,7 @@ public abstract class Player {
         this.items[numItems] = item;
         numItems++;
     }
+
     public void removeItem(Item item) {
         for (int i = 0; i < numItems; i++) {
             if (items[i] == item) {
@@ -182,7 +198,6 @@ public abstract class Player {
     }
 
 //===================== EQUALS =====================
-
     @Override
     public boolean equals(Object jugador) {
         if (this == jugador) return true;
@@ -197,12 +212,7 @@ public abstract class Player {
                 return false;
             }
         }
-
-        if (attackPoints != other.attackPoints) return false;
-        if (defensePoints != other.defensePoints) return false;
-        if (life != other.life) return false;
-
         return true;
     }
-
+//
 }
